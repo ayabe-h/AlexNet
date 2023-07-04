@@ -36,7 +36,7 @@ def main():
     cnn=AlexNet()
 
     # 学習
-    cnn.update(data, mode=True, epoch = 5)
+    cnn.update(data, mode=True, epoch = 300)
 
 if __name__=='__main__':
     main()

@@ -68,6 +68,8 @@ class AlexNet(object):
             # 損失を格納
             self.__loss_history.append(sum_log)
             print(f'epoch:{e}, loss:{sum_log}')
+            if(sum_log < 5): #損失が5を下回ったら終了
+                break
 
         # 損失保存
         if mode:
