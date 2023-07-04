@@ -27,7 +27,8 @@ def main():
                                             download=True, transform=transform)
     trainloader = torch.utils.data.DataLoader(trainset, batch_size=4,
                                             shuffle=True, num_workers=2)
-
+    print ('train_dataset = ', len(trainset))
+    
     # データ
     data=trainloader
 
