@@ -16,28 +16,31 @@ random.seed(seed)
 torch.backends.cudnn.benchmark = False
 torch.backends.cudnn.deterministic = True
 
+
 # 実行文
 def main():
     # 訓練データ
     transform = transforms.Compose(
-        [transforms.ToTensor(),
-        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+        [transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
+    )
 
-    trainset = torchvision.datasets.CIFAR10(root='./data', train=True,
-                                            download=True, transform=transform)
-    trainloader = torch.utils.data.DataLoader(trainset, batch_size=4,
-                                            shuffle=True, num_workers=2)
-    print ('train_dataset = ', len(trainset))
-    
+    trainset = torchvision.datasets.CIFAR10(
+        root="./data", train=True, download=True, transform=transform
+    )
+    trainloader = torch.utils.data.DataLoader(
+        trainset, batch_size=4, shuffle=True, num_workers=2
+    )
+    print("train_dataset = ", len(trainset))
+
     # データ
-    data=trainloader
+    data = trainloader
 
     # CNN
-    cnn=AlexNet()
+    cnn = AlexNet()
 
     # 学習
-    cnn.update(data, mode=True, epoch = 300)
+    cnn.update(data, mode=True, epoch=300)
 
-if __name__=='__main__':
+
+if __name__ == "__main__":
     main()
-

@@ -16,23 +16,26 @@ random.seed(seed)
 torch.backends.cudnn.benchmark = False
 torch.backends.cudnn.deterministic = True
 
+
 def main():
     # テストデータ
-    transform = transforms.Compose([
-        transforms.ToTensor(),
-        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
-        ])
+    transform = transforms.Compose(
+        [transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
+    )
 
-    testset = torchvision.datasets.CIFAR10(root='./data', train=False,
-                                        download=True, transform=transform)
-    testloader = torch.utils.data.DataLoader(testset, batch_size=4,
-                                            shuffle=False, num_workers=2)
+    testset = torchvision.datasets.CIFAR10(
+        root="./data", train=False, download=True, transform=transform
+    )
+    testloader = torch.utils.data.DataLoader(
+        testset, batch_size=4, shuffle=False, num_workers=2
+    )
     # データ
-    data=testloader
+    data = testloader
     # CNN
-    cnn=AlexNet(mode=True, model_path='./model/parameter.pth')
+    cnn = AlexNet(mode=True, model_path="./model/parameter.pth")
     # 検証データで損失計算
     cnn.test_accuracy(data, mode=True)
 
-if __name__=='__main__':
+
+if __name__ == "__main__":
     main()
